@@ -149,14 +149,12 @@ export function Calendar() {
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date))
-  const [endDay, setEndDay] = useState(getEndDayOfMonth(date))
 
   useEffect(() => {
     setDay(date.getDate())
     setMonth(date.getMonth())
     setYear(date.getFullYear())
     setStartDay(getStartDayOfMonth(date))
-    setEndDay(getEndDayOfMonth(date))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date])
 
@@ -166,15 +164,6 @@ export function Calendar() {
 
   function getStartDayOfMonth(date: Date) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay()
-  }
-
-  function getEndDayOfMonth(date: Date) {
-    const daysOfMonth = isLeapYear ? DAYS_LEAP : DAYS
-    return new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      daysOfMonth[date.getMonth()]
-    ).getDay()
   }
 
   const days = isLeapYear ? DAYS_LEAP : DAYS
@@ -247,7 +236,7 @@ export function Calendar() {
               </Day>
             )
           })}
-        {Array((7 - endDay) % 7)
+        {Array(42 - ((startDay + 6) % 7) - days[month])
           .fill(null)
           .map((_, index) => {
             return <BlockDay key={index}>{index + 1}</BlockDay>
