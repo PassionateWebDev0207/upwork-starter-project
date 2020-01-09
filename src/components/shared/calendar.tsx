@@ -95,6 +95,11 @@ const Day = styled['div']`
     left: 17px;
   }
 
+  &:hover {
+    color: white;
+    background-color: #1b76de;
+  }
+
   ${(props: RootProps) =>
     props.isToday &&
     css`
@@ -112,6 +117,12 @@ const Day = styled['div']`
     css`
       .scheduled {
         background-color: #4991e5;
+      }
+
+      &:hover {
+        .scheduled {
+          background-color: #fff;
+        }
       }
     `}
   ${(props: RootProps) =>
