@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 interface RootProps {
   isToday?: boolean
   isSelected?: boolean
-  isScheduled?: boolean
 }
 
 const Frame = styled.div`
@@ -83,7 +82,7 @@ const Day = styled['div']`
   line-height: 14px;
   color: #1A2533;
 
-  .scheduled {
+  .today {
     display: inline-block;
     position: absolute;
     width: 6px;
@@ -96,14 +95,15 @@ const Day = styled['div']`
   }
 
   &:hover {
-    color: white;
-    background-color: #1b76de;
+    background-color: #e8f1fb;
   }
 
   ${(props: RootProps) =>
     props.isToday &&
     css`
-      background-color: #e8f1fb;
+      .today {
+        background-color: #4991e5;
+      }
     `}
 
   ${(props: RootProps) =>
@@ -111,25 +111,15 @@ const Day = styled['div']`
     css`
       color: white;
       background-color: #1b76de;
-    `}
-  ${(props: RootProps) =>
-    props.isScheduled &&
-    css`
-      .scheduled {
-        background-color: #4991e5;
-      }
-
       &:hover {
-        .scheduled {
-          background-color: #fff;
-        }
+        background-color: #1b76de;
       }
     `}
   ${(props: RootProps) =>
-    props.isScheduled &&
+    props.isToday &&
     props.isSelected &&
     css`
-      .scheduled {
+      .today {
         background-color: #fff;
       }
     `}
@@ -239,11 +229,10 @@ export function Calendar() {
                 key={index}
                 isToday={d === today.getDate()}
                 isSelected={d === day}
-                isScheduled={d === 17}
                 onClick={() => setDate(new Date(year, month, d))}
               >
                 {d > 0 ? d : ''}
-                <span className="scheduled"></span>
+                <span className="today"></span>
               </Day>
             )
           })}
