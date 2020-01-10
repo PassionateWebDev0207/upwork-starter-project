@@ -228,7 +228,11 @@ export function Calendar() {
             return (
               <Day
                 key={index}
-                isToday={d === today.getDate()}
+                isToday={
+                  d === today.getDate() &&
+                  year === today.getFullYear() &&
+                  month === today.getMonth()
+                }
                 isSelected={d === day}
                 onClick={() => setDate(new Date(year, month, d))}
               >
