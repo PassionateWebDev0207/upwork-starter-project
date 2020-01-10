@@ -146,6 +146,7 @@ export function Calendar() {
   ]
 
   const today = new Date()
+  const [selectedDate, setSelectedDate] = useState(new Date())
   const [date, setDate] = useState(today)
   const [day, setDay] = useState(date.getDate())
   const [month, setMonth] = useState(date.getMonth())
@@ -233,8 +234,12 @@ export function Calendar() {
                   year === today.getFullYear() &&
                   month === today.getMonth()
                 }
-                isSelected={d === day}
-                onClick={() => setDate(new Date(year, month, d))}
+                isSelected={
+                  d === selectedDate.getDate() &&
+                  year === selectedDate.getUTCFullYear() &&
+                  month === selectedDate.getMonth()
+                }
+                onClick={() => setSelectedDate(new Date(year, month, d))}
               >
                 {d > 0 ? d : ''}
                 <span className="today"></span>
