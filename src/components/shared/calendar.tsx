@@ -7,18 +7,18 @@ interface RootProps {
 }
 
 const Frame = styled.div`
-  width: 320px;
+  display: grid;
+  grid-template-rows: 50px auto;
   background-color: #fff;
   border: 1px solid #d1e3f8;
-  box-sizing: content-box;
+  box-sizing: border-box;
   box-shadow: 0px 4px 8px rgba(50, 73, 100, 0.1);
 `
 
 const Header = styled.div`
   font-size: 18px;
   font-weight: bold;
-  width: 100%;
-  height: 50px
+  height: 50px;
   box-sizing: border-box;
   padding: 0 20px;
   display: flex;
@@ -26,7 +26,7 @@ const Header = styled.div`
   align-items: center;
   background-color: #fff;
   border-bottom: 1px solid #d1e3f8;
-  
+
   svg {
     cursor: pointer;
   }
@@ -34,8 +34,9 @@ const Header = styled.div`
 
 const Body = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   box-sizing: border-box;
   padding: 10px 20px 20px 20px;
 `
